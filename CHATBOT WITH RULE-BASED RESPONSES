@@ -1,0 +1,24 @@
+import random
+
+rules = {
+    "hi": ["Hello!", "Hi there!", "Hey!"],
+    "how are you": ["I'm good, thanks.", "I'm doing well."],
+    "bye": ["Goodbye!", "See you later!"],
+    "default": ["I'm not sure what you mean.", "Can you please rephrase that?"]
+}
+
+def generate_response(user_input):
+    user_input = user_input.lower()  # Convert input to lowercase
+    for key in rules:
+        if key in user_input:
+            return random.choice(rules[key])
+    return random.choice(rules["default"])
+
+print("Chatbot: Hi! How can I help you today?")
+while True:
+    user_input = input("You: ")
+    if user_input.lower() == "exit":
+        print("Chatbot: Goodbye!")
+        break
+    response = generate_response(user_input)
+    print("Chatbot:", response)
